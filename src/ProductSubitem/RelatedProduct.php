@@ -84,10 +84,6 @@ class RelatedProduct extends Subitem
                 fn ($d) => new ProductIdentifier($d),
                 $this->xpath->query('/*/ProductIdentifier')
             );
-
-            dd($this->productIdentifiers);
-            //new ProductIdentifier($this->_getSingleChildElement('ProductIdentifier'));
-
         } catch (\Exception $e) {
         }
         try {
