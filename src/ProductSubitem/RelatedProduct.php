@@ -80,10 +80,9 @@ class RelatedProduct extends Subitem
         parent::__construct($in);
 
         try {
-            $this->productIdentifiers = array_map(
-                fn ($d) => new ProductIdentifier($d),
-                $this->xpath->query('/*/ProductIdentifier')
-            );
+            foreach ($this->xpath->query('/*/ProductIdentifier') as $node) {
+                $this->productIdentifiers[] = new ProductIdentifier($node);
+            }
         } catch (\Exception $e) {
         }
         try {
