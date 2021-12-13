@@ -697,7 +697,7 @@ class XMLHandler {
 		$this->domImpl = new \DOMImplementation();
 		// Create a parser that outputs UTF-8.
 		$parser = xml_parser_create('UTF-8');
-		if (!is_resource($parser)) {
+		if (!$parser) {
 			throw new XMLException('could not create the XML parser');
 		}
 		// Configure the parser to not do case-folding.
