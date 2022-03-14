@@ -101,6 +101,10 @@ class Contributor extends Subitem
             return $this->value['PersonName'];
         }
 
+        if (isset($this->value['NamesBeforeKey']) && isset($this->value['KeyNames'])) {
+            return $this->value['NamesBeforeKey'] . ' ' . $this->value['KeyNames'];
+        }
+
         if (isset($this->value['PersonNameInverted'])) {
             return preg_replace("/^(.+), (.+)$/", "$2 $1", $this->value['PersonNameInverted']);
         }
