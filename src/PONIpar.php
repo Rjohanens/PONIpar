@@ -35,5 +35,3 @@ namespace PONIpar;
 // ) as $part) {
 // 	require_once "$part.php";
 // }
-
-?>

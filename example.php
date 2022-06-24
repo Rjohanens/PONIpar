@@ -68,11 +68,11 @@ $parser->useString($doc);
 // hitting memory limits.
 
 $parser->setProductHandler(function ($product) {
-	// Retrieve the GTIN-13 for the product and print it.
-	$gtin13 = $product->getIdentifier(
-		PONIpar\ProductIdentifierProductSubitem::TYPE_GTIN13
-	);
-	echo "$gtin13\n";
+    // Retrieve the GTIN-13 for the product and print it.
+    $gtin13 = $product->getIdentifier(
+        PONIpar\ProductIdentifierProductSubitem::TYPE_GTIN13
+    );
+    echo "$gtin13\n";
 });
 
 
@@ -82,5 +82,3 @@ $parser->setProductHandler(function ($product) {
 // errors), but call our product handler once for each product.
 
 $parser->parse();
-
-?>

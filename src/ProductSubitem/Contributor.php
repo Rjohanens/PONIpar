@@ -2,8 +2,6 @@
 
 namespace PONIpar\ProductSubitem;
 
-use PONIpar\ProductSubitem\Subitem;
-
 /*
    This file is part of the PONIpar PHP Onix Parser Library.
    Copyright (c) 2012, [di] digitale informationssysteme gmbh
@@ -18,12 +16,11 @@ use PONIpar\ProductSubitem\Subitem;
  */
 class Contributor extends Subitem
 {
-
     // Mapping of constants to types.
-    const ROLE_AUTHOR       = 'A01';
-    const ROLE_NARRATOR     = 'E03';
-    const ROLE_READBY       = 'E07';
-    const ROLE_PERFORMER    = 'E99';
+    public const ROLE_AUTHOR       = 'A01';
+    public const ROLE_NARRATOR     = 'E03';
+    public const ROLE_READBY       = 'E07';
+    public const ROLE_PERFORMER    = 'E99';
 
     /**
      * The ContributorRole of this Contributor

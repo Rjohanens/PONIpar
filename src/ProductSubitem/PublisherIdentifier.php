@@ -6,8 +6,7 @@ use PONIpar\Exceptions\ONIXException;
 
 class PublisherIdentifier extends Subitem
 {
-
-    const TYPE_CB_RELATIE_ID = "10";
+    public const TYPE_CB_RELATIE_ID = "10";
 
     /**
      * PublisherIDType codelist 44
@@ -47,5 +46,4 @@ class PublisherIdentifier extends Subitem
     {
         return $this->value;
     }
-
 }

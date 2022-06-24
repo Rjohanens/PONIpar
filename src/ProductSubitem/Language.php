@@ -2,17 +2,14 @@
 
 namespace PONIpar\ProductSubitem;
 
-use PONIpar\ProductSubitem\Subitem;
 use PONIpar\Exceptions\ONIXException;
-
 
 /**
  * <Language> code list
  */
 class Language extends Subitem
 {
-
-    const ROLE_TEXT = "01";
+    public const ROLE_TEXT = "01";
 
     /**
      * LanguageRole
@@ -38,7 +35,7 @@ class Language extends Subitem
 
 
         $role = $this->_getSingleChildElementText("LanguageRole");
-        if($role && !preg_match('/^[0-9]{2}$/', $role)) {
+        if ($role && !preg_match('/^[0-9]{2}$/', $role)) {
             throw new ONIXException('wrong format of LanguageRole');
         }
         $this->role = $role;
@@ -56,5 +53,4 @@ class Language extends Subitem
     {
         return $this->code;
     }
-
 }

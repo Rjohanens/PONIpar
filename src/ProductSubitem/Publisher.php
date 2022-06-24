@@ -2,14 +2,12 @@
 
 namespace PONIpar\ProductSubitem;
 
-use PONIpar\ProductSubitem\Subitem;
 use PONIpar\Exceptions\ONIXException;
 
 class Publisher extends Subitem
 {
-
-    const ROLE_PUBLISHER = "01";
-    const ROLE_COPUBLISHER = "02";
+    public const ROLE_PUBLISHER = "01";
+    public const ROLE_COPUBLISHER = "02";
 
     /**
      * PublisherIdentifier
@@ -41,7 +39,7 @@ class Publisher extends Subitem
         $this->identifier = new PublisherIdentifier($this->_getSingleChildElement('PublisherIdentifier'));
 
         $role = $this->_getSingleChildElementText("PublishingRole");
-        if($role && !preg_match('/^[0-9]{2}$/', $role)) {
+        if ($role && !preg_match('/^[0-9]{2}$/', $role)) {
             throw new ONIXException('wrong format of PublishingRole');
         }
         $this->publishingRole = $role;
@@ -65,6 +63,4 @@ class Publisher extends Subitem
     {
         return $this->name;
     }
-
-
 }

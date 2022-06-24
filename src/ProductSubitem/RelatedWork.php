@@ -16,11 +16,11 @@ namespace PONIpar\ProductSubitem;
  */
 class RelatedWork extends Subitem
 {
-    const MANIFESTATION_OF = '01';
-    const DERIVED_FROM = '02';
-    const RELATED_WORK = '03';
-    const OTHER_WORK_IN_SAME_COLLECTION = '03';
-    const OTHER_WORK_BY_SAME_CONSTRIBUTOR = '04';
+    public const MANIFESTATION_OF = '01';
+    public const DERIVED_FROM = '02';
+    public const RELATED_WORK = '03';
+    public const OTHER_WORK_IN_SAME_COLLECTION = '03';
+    public const OTHER_WORK_BY_SAME_CONSTRIBUTOR = '04';
 
     /**
      * The WorkRelationCode of this RelatedWork
