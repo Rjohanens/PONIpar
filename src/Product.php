@@ -574,7 +574,7 @@ class Product
     public function getAudience()
     {
         if ($this->version >= '3.0') {
-            return $this->get('DescriptiveDetail/Audience');
+            return $this->get('DescriptiveDetail/Audience', 'Audience');
         }
         return $this->get('AudienceCode');
     }
