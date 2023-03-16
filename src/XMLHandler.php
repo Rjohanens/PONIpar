@@ -705,9 +705,12 @@ class XMLHandler
         // Have a DOMImplementation handy.
         $this->domImpl = new \DOMImplementation();
         // Create a parser that outputs UTF-8.
-        $parser = xml_parser_create('UTF-8');
-        if (!is_resource($parser)) {
+        $parser = xml_parser_create();
+        if (!$parser) {
             throw new XMLException('could not create the XML parser');
+        }
+        if (!xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, 'UTF-8')) {
+            throw new XMLException('could not set XML parser option');
         }
         // Configure the parser to not do case-folding.
         if (!xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0)) {
