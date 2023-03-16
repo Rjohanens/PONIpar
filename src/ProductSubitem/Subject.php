@@ -14,90 +14,100 @@ namespace PONIpar\ProductSubitem;
 /**
  * A <Subject> subitem.
  */
-class Subject extends Subitem {
+class Subject extends Subitem
+{
+    // TODO - add more constants
+    // list 27
+    public const SCHEME_BISAC_SUBJECT_HEADING = "10";
+    public const SCHEME_KEYWORDS = "20";
 
-	// TODO - add more constants
-	// list 27
-	const SCHEME_BISAC_SUBJECT_HEADING = "10";
-	const SCHEME_KEYWORDS = "20";
+    /**
+     * The scheme of this subject
+     */
+    protected $scheme = null;
 
-	/**
-	 * The scheme of this subject
-	 */
-	protected $scheme = null;
+    /**
+     * The value (code) of this subject
+     */
+    protected $value = null;
 
-	/**
-	 * The value (code) of this subject
-	 */
-	protected $value = null;
+    /**
+     * The text (keyword) of this subject
+     */
+    protected $text = null;
 
-	/**
-	 * The text (keyword) of this subject
-	 */
-	protected $text = null;
+    protected $mainSubject = false;
 
-	protected $mainSubject = false;
+    /**
+     * Create a new Subject.
+     *
+     * @param mixed $in The <Subject> DOMDocument or DOMElement.
+     */
+    public function __construct($in)
+    {
+        parent::__construct($in);
 
-	/**
-	 * Create a new Subject.
-	 *
-	 * @param mixed $in The <Subject> DOMDocument or DOMElement.
-	 */
-	public function __construct($in) {
-		parent::__construct($in);
+        try {
+            $this->scheme = $this->_getSingleChildElementText('SubjectSchemeIdentifier');
+        } catch (\Exception $e) {
+        }
+        try {
+            $this->value = $this->_getSingleChildElementText('SubjectCode');
+        } catch (\Exception $e) {
+        }
+        try {
+            $this->text = $this->_getSingleChildElementText('SubjectHeadingText');
+        } catch (\Exception $e) {
+        }
 
-		try{ $this->scheme = $this->_getSingleChildElementText('SubjectSchemeIdentifier'); } catch(\Exception $e) { }
-		try{ $this->value = $this->_getSingleChildElementText('SubjectCode'); } catch(\Exception $e) { }
-		try {
-			$this->text = $this->_getSingleChildElementText('SubjectHeadingText');
-		} catch (\Exception $e) {
-		}
+        try {
+            $this->_getSingleChildElementText('MainSubject');
+            $this->mainSubject = true;
+        } catch (\Exception $e) {
+            $this->mainSubject = false;
+        }
 
-		try{ $this->_getSingleChildElementText('MainSubject'); $this->mainSubject = true; } catch(\Exception $e) {
-			$this->mainSubject = false;
-		}
+        // Save memory.
+        $this->_forgetSource();
+    }
 
-		// Save memory.
-		$this->_forgetSource();
-	}
+    /**
+     * Retrieve the type of this identifier.
+     *
+     * @return string The contents of <SubjectSchemeIdentifier>.
+     */
+    public function getScheme()
+    {
+        return $this->scheme;
+    }
 
-	/**
-	 * Retrieve the type of this identifier.
-	 *
-	 * @return string The contents of <SubjectSchemeIdentifier>.
-	 */
-	public function getScheme() {
-		return $this->scheme;
-	}
+    /**
+     * Retrieve the value of
+     *
+     * @return string The contents of <SubjectCode>.
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
 
-	/**
-	 * Retrieve the value of
-	 *
-	 * @return string The contents of <SubjectCode>.
-	 */
-	public function getValue() {
-		return $this->value;
-	}
+    /**
+     * Retrieve the text of
+     *
+     * @return string The contents of <SubjectHeadingText>.
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
 
-	/**
-	 * Retrieve the text of
-	 *
-	 * @return string The contents of <SubjectHeadingText>.
-	 */
-	public function getText()
-	{
-		return $this->text;
-	}
-
-	/**
-	 * Is this the <MainSubject>?
-	 *
-	 * @return bool
-	 */
-	public function isMainSubject() {
-		return $this->mainSubject;
-	}
-
+    /**
+     * Is this the <MainSubject>?
+     *
+     * @return bool
+     */
+    public function isMainSubject()
+    {
+        return $this->mainSubject;
+    }
 };
-
-?>

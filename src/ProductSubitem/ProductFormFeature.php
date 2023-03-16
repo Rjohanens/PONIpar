@@ -2,17 +2,13 @@
 
 namespace PONIpar\ProductSubitem;
 
-use PONIpar\ProductSubitem\Subitem;
-
-
-class ProductFormFeature extends Subitem {
-
-
+class ProductFormFeature extends Subitem
+{
     // list 150
-    const TYPE_DIGITAL = "EA"; // PDF
-    const TYPE_DIGITAL_DOWNLOAD_ONINE = "EB"; // Epub
-    const TYPE_DIGITAL_ONLINE = "EC";
-    const TYPE_DIGITAL_DOWNLOAD = "ED"; // Epub
+    public const TYPE_DIGITAL = "EA"; // PDF
+    public const TYPE_DIGITAL_DOWNLOAD_ONINE = "EB"; // Epub
+    public const TYPE_DIGITAL_ONLINE = "EC";
+    public const TYPE_DIGITAL_DOWNLOAD = "ED"; // Epub
 
     /**
      * Type of the ProductForm
@@ -62,5 +58,4 @@ class ProductFormFeature extends Subitem {
     {
         return $this->value;
     }
-
 }

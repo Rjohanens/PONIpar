@@ -25,5 +25,8 @@
             "PONIpar\\": "src/"
         }
     },
-    "license": "BSD"
+    "license": "BSD",
+    "require-dev": {
+        "laravel/pint": "^0.1.7"
+    }
 }

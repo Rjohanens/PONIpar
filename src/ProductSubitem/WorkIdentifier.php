@@ -2,7 +2,6 @@
 
 namespace PONIpar\ProductSubitem;
 
-use PONIpar\ProductSubitem\Subitem;
 use PONIpar\Exceptions\ONIXException;
 
 /*
@@ -21,16 +20,15 @@ use PONIpar\Exceptions\ONIXException;
  */
 class WorkIdentifier extends Subitem
 {
-
     // Mapping of constants to types.
-    const TYPE_PROPRIETARY  = '01';
-    const TYPE_ISBN10       = '02';
-    const TYPE_DOI          = '06';
-    const TYPE_ISTC         = '11';
-    const TYPE_ISBN13       = '15';
-    const TYPE_ISRC         = '18';
-    const TYPE_GLIMIR       = '32';
-    const OWI               = '33';
+    public const TYPE_PROPRIETARY  = '01';
+    public const TYPE_ISBN10       = '02';
+    public const TYPE_DOI          = '06';
+    public const TYPE_ISTC         = '11';
+    public const TYPE_ISBN13       = '15';
+    public const TYPE_ISRC         = '18';
+    public const TYPE_GLIMIR       = '32';
+    public const OWI               = '33';
 
     /**
      * The type of this work identifier.

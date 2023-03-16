@@ -2,8 +2,6 @@
 
 namespace PONIpar\ProductSubitem;
 
-use PONIpar\ProductSubitem\Subitem;
-
 /*
    This file is part of the PONIpar PHP Onix Parser Library.
    Copyright (c) 2012, [di] digitale informationssysteme gmbh
@@ -16,68 +14,82 @@ use PONIpar\ProductSubitem\Subitem;
 /**
  * A <SalesRights> subitem.
  */
-class SalesRights extends Subitem {
+class SalesRights extends Subitem
+{
+    // TODO - add more type constants
+    public const TYPE_UNKNOWN = "00";
+    public const TYPE_FOR_SALE_EXCLUSIVE = "01";
+    public const TYPE_FOR_SALE_NONEXCLUSIVE = "02";
+    public const TYPE_NOT_FOR_SALE = "03";
 
-	// TODO - add more type constants
-	const TYPE_UNKNOWN = "00";
-	const TYPE_FOR_SALE_EXCLUSIVE = "01";
-	const TYPE_FOR_SALE_NONEXCLUSIVE = "02";
-	const TYPE_NOT_FOR_SALE = "03";
-
-	/**
-	 * The values of this sales right
-	 */
-	protected $type = null;
-	protected $country = null;
-	protected $territory= null;
+    /**
+     * The values of this sales right
+     */
+    protected $type = null;
+    protected $country = null;
+    protected $territory= null;
 
 
-	/**
-	 * Create a new SalesRights.
-	 *
-	 * @param mixed $in The <SalesRights> DOMDocument or DOMElement.
-	 */
-	public function __construct($in) {
-		parent::__construct($in);
+    /**
+     * Create a new SalesRights.
+     *
+     * @param mixed $in The <SalesRights> DOMDocument or DOMElement.
+     */
+    public function __construct($in)
+    {
+        parent::__construct($in);
 
-		try {$this->type = $this->_getSingleChildElementText('SalesRightsType');} catch(\Exception $e) { }
-		try {$this->country = $this->_getSingleChildElementText('RightsCountry');} catch(\Exception $e) { }
-		try {$this->territory = $this->_getSingleChildElementText('RightsTerritory');} catch(\Exception $e) { }
+        try {
+            $this->type = $this->_getSingleChildElementText('SalesRightsType');
+        } catch (\Exception $e) {
+        }
+        try {
+            $this->country = $this->_getSingleChildElementText('RightsCountry');
+        } catch (\Exception $e) {
+        }
+        try {
+            $this->territory = $this->_getSingleChildElementText('RightsTerritory');
+        } catch (\Exception $e) {
+        }
 
-		// try 3.0
-		if( !$this->country && !$this->territory ){
-			try {$this->country = $this->_getSingleChildElementText('Territory/CountriesIncluded');} catch(\Exception $e) { }
-		}
+        // try 3.0
+        if (!$this->country && !$this->territory) {
+            try {
+                $this->country = $this->_getSingleChildElementText('Territory/CountriesIncluded');
+            } catch (\Exception $e) {
+            }
+        }
 
-		// Save memory.
-		$this->_forgetSource();
-	}
+        // Save memory.
+        $this->_forgetSource();
+    }
 
-	/**
-	 * Retrieve the type of this identifier.
-	 *
-	 * @return string The contents of <ProductIDType>.
-	 */
-	public function getType() {
-		return $this->type;
-	}
+    /**
+     * Retrieve the type of this identifier.
+     *
+     * @return string The contents of <ProductIDType>.
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
-	/**
-	 * Retrieve the actual value of this identifier.
-	 *
-	 * @return string The contents of <IDValue>.
-	 */
-	public function getValue() {
-		return $this->country ? $this->country : $this->territory;
-	}
+    /**
+     * Retrieve the actual value of this identifier.
+     *
+     * @return string The contents of <IDValue>.
+     */
+    public function getValue()
+    {
+        return $this->country ? $this->country : $this->territory;
+    }
 
-	/*
-		Is For Sale
-	*/
-	public function isForSale(){
-		return $this->getType() == self::TYPE_FOR_SALE_EXCLUSIVE
-		|| $this->getType() == self::TYPE_FOR_SALE_NONEXCLUSIVE;
-	}
-
+    /*
+        Is For Sale
+    */
+    public function isForSale()
+    {
+        return $this->getType() == self::TYPE_FOR_SALE_EXCLUSIVE
+        || $this->getType() == self::TYPE_FOR_SALE_NONEXCLUSIVE;
+    }
 };
-
